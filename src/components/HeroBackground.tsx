@@ -39,9 +39,9 @@ const Atmosphere = styled.div`
     content: '';
     position: absolute;
     inset: -1px;
-    background: url(${grain}) repeat;
+    background: url(${grain}) center / cover no-repeat;
     mix-blend-mode: screen;
-    opacity: 0.28;
+    opacity: 0.5;
     filter: blur(0.4px);
   }
 `
