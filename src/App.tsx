@@ -58,7 +58,7 @@ const Description = styled(Body)`
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false)
-  const phone = (import.meta.env.VITE_SMS_PHONE ?? '').trim()
+  const phone = import.meta.env.VITE_SMS_PHONE?.trim() || '+1 628-316-6196'
   const message = import.meta.env.VITE_SMS_MESSAGE || "Hi Hypha! I'd like to create a Sprout."
   const smsHref = `sms:${phone.replace(/[^+\d]/g, '')}?&body=${encodeURIComponent(message)}`
 
