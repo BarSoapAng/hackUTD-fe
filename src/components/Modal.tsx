@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components'
 import { colors } from '../lib/styles'
 import Button from './Button'
 
-const Dialog = styled.dialog`
+const Dialog = styled.dialog<{ $closing: boolean }>`
   position: fixed;
   inset: 0;
   width: min(550px, calc(100% - 32px));
@@ -24,17 +24,23 @@ const Dialog = styled.dialog`
   }
 
   &[open] {
-    animation: ${keyframes`
+    animation: ${({ $closing }) => $closing ? keyframes`
+      from { opacity: 1; transform: translateY(0) scale(1); }
+      to { opacity: 0; transform: translateY(12px) scale(0.97); }
+    ` : keyframes`
       from { opacity: 0; transform: translateY(12px) scale(0.97); }
       to { opacity: 1; transform: translateY(0) scale(1); }
-    `} 240ms ease-out;
+    `} 240ms ${({ $closing }) => $closing ? 'ease-in' : 'ease-out'} forwards;
   }
 
   &[open]::backdrop {
-    animation: ${keyframes`
+    animation: ${({ $closing }) => $closing ? keyframes`
+      from { opacity: 1; }
+      to { opacity: 0; }
+    ` : keyframes`
       from { opacity: 0; }
       to { opacity: 1; }
-    `} 240ms ease-out;
+    `} 240ms ${({ $closing }) => $closing ? 'ease-in' : 'ease-out'} forwards;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -68,12 +74,18 @@ export default function Modal({ open, onClose, labelledBy, children }: ModalProp
   useEffect(() => {
     const element = dialog.current
     if (open && !element?.open) element?.showModal()
-    if (!open && element?.open) element.close()
+    if (!open && element?.open) {
+      let cancelled = false
+      Promise.allSettled(element.getAnimations().map((animation) => animation.finished))
+        .then(() => { if (!cancelled) element.close() })
+      return () => { cancelled = true }
+    }
   }, [open])
 
   return (
     <Dialog
       ref={dialog}
+      $closing={!open}
       aria-labelledby={labelledBy}
       onCancel={(event) => { event.preventDefault(); onClose() }}
       onClick={(event) => {
