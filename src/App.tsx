@@ -73,7 +73,7 @@ const Content = styled.div`
 const Heading = styled(Title)<{ $ready: boolean }>`
   max-width: 95dvw;
   line-height: 1.02;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.025em;
   overflow-wrap: anywhere;
   text-wrap: balance;
   > span {
