@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { colors } from '../lib/styles'
 import heroVideo from '../assets/hero-animation-fast.mp4'
 import heroStill from '../assets/hero-final.jpg'
-import grain from '../assets/grain.avif'
+import grain from '../assets/grain.jpg'
 
 const Background = styled.div<{ $finished: boolean }>`
   position: absolute;
@@ -16,6 +16,10 @@ const Background = styled.div<{ $finished: boolean }>`
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  img {
+    transform: scale(1.1);
   }
 
   video {
@@ -40,8 +44,8 @@ const Atmosphere = styled.div`
     position: absolute;
     inset: -1px;
     background: url(${grain}) center / cover no-repeat;
-    mix-blend-mode: screen;
-    opacity: 0.25;
+    mix-blend-mode: soft-light;
+    opacity: 0.1;
     filter: blur(0.4px);
   }
 `
