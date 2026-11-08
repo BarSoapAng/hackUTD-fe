@@ -82,7 +82,7 @@ const Heading = styled(Title)<{ $ready: boolean }>`
     display: inline-block;
     opacity: ${({ $ready }) => $ready ? 1 : 0};
     transform: translateY(${({ $ready }) => $ready ? '0' : '32px'});
-    transition: opacity 1200ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 1800ms ease, transform 2200ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -129,7 +129,7 @@ function App() {
             <Heading $ready={ready}>
               {'Make something worth texting.'.split(' ').map((word, index) => (
                 <Fragment key={word}>
-                  <span style={{ transitionDelay: `${index * 100}ms` }}>{word}</span>{' '}
+                  <span style={{ transitionDelay: `${index * 160}ms` }}>{word}</span>{' '}
                 </Fragment>
               ))}
             </Heading>
