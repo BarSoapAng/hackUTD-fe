@@ -108,9 +108,9 @@ function App() {
             <Button variant="tertiary" onClick={startConversation}>Try a demo</Button>
           </Header>
           <Content>
-            <Heading>Let your knowledge grow.</Heading>
-            <Description>Turn your notes into a Sprout anyone can text. Your knowledge, shared through iMessage.</Description>
-            <Button onClick={startConversation}>Create a Sprout</Button>
+            <Heading>Make something worth texting.</Heading>
+            <Description>Build an iMessage agent for your people, your projects, or your next big idea. Just tell HIFA what you have in mind.</Description>
+            <Button onClick={startConversation}>Start with a text</Button>
           </Content>
         </Hero>
       </Page>
