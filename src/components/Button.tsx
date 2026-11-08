@@ -15,10 +15,10 @@ const StyledButton = styled.button<{ $variant: NonNullable<ButtonProps['variant'
   width: fit-content;
   max-width: 100%;
   padding: 0.9em 1.5em;
-  border: 1px solid ${colors.text.black};
+  border: 0;
   border-radius: 999px;
-  background: ${colors.text.black};
-  color: ${colors.text.white};
+  background: ${colors.text.white};
+  color: ${colors.text.black};
   font: inherit;
   font-weight: 700;
   line-height: 1.3;
@@ -41,6 +41,7 @@ const StyledButton = styled.button<{ $variant: NonNullable<ButtonProps['variant'
   }
 
   ${({ $variant }) => $variant === 'secondary' && css`
+    border: 1px solid ${colors.text.black};
     background: ${colors.background};
     color: ${colors.text.black};
 

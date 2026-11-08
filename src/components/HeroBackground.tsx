@@ -1,12 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import { colors } from '../lib/styles'
 import heroVideo from '../assets/hero-animation-fast.mp4'
 import heroStill from '../assets/hero-final.jpg'
-
-const rainfall = keyframes`
-  to { background-position: -24px 240px, -12px 360px; }
-`
 
 const Background = styled.div<{ $finished: boolean }>`
   position: absolute;
@@ -23,13 +19,12 @@ const Background = styled.div<{ $finished: boolean }>`
 
   img {
     transform: scale(${({ $finished }) => $finished ? 1.1 : 1});
-    transition: transform 1800ms ease-out;
   }
 
   video { visibility: ${({ $finished }) => $finished ? 'hidden' : 'visible'}; }
 
   @media (prefers-reduced-motion: reduce) {
-    img { transform: scale(1.1); transition: none; }
+    img { transform: scale(1.1); }
     video { display: none; }
   }
 `
@@ -41,23 +36,6 @@ const Atmosphere = styled.div`
   background: linear-gradient(90deg,
     color-mix(in srgb, ${colors.text.black} 64%, transparent),
     color-mix(in srgb, ${colors.text.black} 24%, transparent));
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    opacity: 0.13;
-    background-image:
-      repeating-linear-gradient(100deg, transparent 0 39px, ${colors.text.white} 40px, transparent 41px 80px),
-      repeating-linear-gradient(100deg, transparent 0 69px, ${colors.text.white} 70px, transparent 71px 130px);
-    background-size: 180px 240px, 260px 360px;
-    mask-image: repeating-linear-gradient(transparent 0 15px, ${colors.text.black} 25px 42px, transparent 65px 120px);
-    animation: ${rainfall} 1.3s linear infinite;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    &::after { animation: none; }
-  }
 `
 
 export default function HeroBackground() {

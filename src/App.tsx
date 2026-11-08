@@ -9,8 +9,6 @@ const Page = styled.main`
   width: 100%;
   height: 100svh;
   height: 100dvh;
-  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
-    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
   overflow: hidden;
 `
 
@@ -22,8 +20,6 @@ const Hero = styled.section`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border: 3px solid ${colors.text.black};
-  border-radius: clamp(20px, 3vw, 40px);
   background: ${colors.text.black};
   color: ${colors.text.white};
 `
@@ -78,7 +74,7 @@ function App() {
           <Content>
             <Heading>Meet Hypha.</Heading>
             <Description>Turn your notes into a Sprout anyone can text. Your knowledge, shared through iMessage.</Description>
-            <Button onClick={startConversation}>Create a Sprout <span aria-hidden="true">↗</span></Button>
+            <Button onClick={startConversation}>Create a Sprout</Button>
           </Content>
         </Hero>
       </Page>
