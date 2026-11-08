@@ -22,17 +22,7 @@ const Dialog = styled.dialog<{ $closing: boolean }>`
     backdrop-filter: blur(10px);
   }
 
-  &[open] {
-    animation: ${({ $closing }) => $closing ? keyframes`
-      from { opacity: 1; transform: translateY(0) scale(1); }
-      to { opacity: 0; transform: translateY(12px) scale(0.97); }
-    ` : keyframes`
-      from { opacity: 0; transform: translateY(12px) scale(0.97); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    `} 240ms ${({ $closing }) => $closing ? 'ease-in' : 'ease-out'} forwards;
-  }
-
-  &[open]::backdrop {
+  &[open], &[open]::backdrop {
     animation: ${({ $closing }) => $closing ? keyframes`
       from { opacity: 1; }
       to { opacity: 0; }
