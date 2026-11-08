@@ -6,7 +6,7 @@ import Modal from './Modal'
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) 200px;
   gap: 16px;
   padding: 16px;
 
