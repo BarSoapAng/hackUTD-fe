@@ -92,7 +92,7 @@ const Heading = styled(Title)<{ $ready: boolean }>`
 `
 
 const Description = styled(Body)`
-  max-width: 42ch;
+  max-width: 70dvw;
   text-wrap: pretty;
 `
 
