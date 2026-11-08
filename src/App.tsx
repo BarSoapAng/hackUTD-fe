@@ -41,11 +41,15 @@ const Header = styled.header`
     justify-self: end;
     min-height: 44px;
     font-size: clamp(12px, 2vw, 16px);
+    line-height: 1;
     white-space: nowrap;
   }
 `
 
 const Brand = styled(Title)`
+  display: flex;
+  align-items: center;
+  min-height: 44px;
   font-size: clamp(24px, 3vw, 32px);
   line-height: 1;
   letter-spacing: -0.04em;
