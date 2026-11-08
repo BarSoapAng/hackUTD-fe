@@ -19,6 +19,7 @@ const Hero = styled.section`
   position: relative;
   isolation: isolate;
   display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
   place-items: center;
   width: 100%;
   height: 100%;
@@ -27,14 +28,37 @@ const Hero = styled.section`
   color: ${colors.text.white};
 `
 
+const Header = styled.header`
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: clamp(20px, 4vw, 40px) clamp(24px, 6vw, 80px);
+
+  > button {
+    justify-self: end;
+    min-height: 44px;
+    font-size: clamp(12px, 2vw, 16px);
+    white-space: nowrap;
+  }
+`
+
+const Brand = styled(Title)`
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+`
+
 const Content = styled.div`
   position: relative;
   width: min(100%, 1120px);
   padding: clamp(24px, 6vw, 80px);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
+  align-items: center;
+  text-align: center;
   gap: clamp(16px, 3dvh, 28px);
 
   @media (max-height: 450px) {
@@ -44,15 +68,16 @@ const Content = styled.div`
 `
 
 const Heading = styled(Title)`
-  max-width: 9ch;
+  max-width: 15ch;
   font-size: clamp(40px, min(8vw, 13dvh), 100px);
   line-height: 1.02;
   letter-spacing: -0.055em;
   overflow-wrap: anywhere;
+  text-wrap: balance;
 `
 
 const Description = styled(Body)`
-  max-width: 29ch;
+  max-width: 42ch;
   text-wrap: pretty;
 `
 
@@ -75,8 +100,15 @@ function App() {
       <Page>
         <Hero>
           <HeroBackground />
+          <Header>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 21v-8M12 17C6 17 3 14 3 8c6 0 9 3 9 9ZM12 13c0-6 3-10 9-10 0 6-3 10-9 10ZM8 21h8" />
+            </svg>
+            <Brand as="p">Hypha</Brand>
+            <Button variant="tertiary" onClick={startConversation}>Try a demo</Button>
+          </Header>
           <Content>
-            <Heading>Meet Hypha.</Heading>
+            <Heading>Let your knowledge grow.</Heading>
             <Description>Turn your notes into a Sprout anyone can text. Your knowledge, shared through iMessage.</Description>
             <Button onClick={startConversation}>Create a Sprout</Button>
           </Content>
