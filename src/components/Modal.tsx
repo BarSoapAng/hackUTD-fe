@@ -1,7 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { colors } from '../lib/styles'
-import Button from './Button'
 
 const Dialog = styled.dialog<{ $closing: boolean }>`
   position: fixed;
@@ -48,19 +47,6 @@ const Dialog = styled.dialog<{ $closing: boolean }>`
   }
 `
 
-const CloseButton = styled(Button)`
-  position: absolute;
-  z-index: 1;
-  top: 12px;
-  right: 12px;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 0;
-  font-size: 24px;
-  font-weight: 400;
-`
-
 type ModalProps = {
   open: boolean
   onClose: () => void
@@ -95,9 +81,6 @@ export default function Modal({ open, onClose, labelledBy, children }: ModalProp
           event.clientY < bounds.top || event.clientY > bounds.bottom) onClose()
       }}
     >
-      <CloseButton variant="secondary" aria-label="Close dialog" onClick={onClose} autoFocus>
-        <span aria-hidden="true">×</span>
-      </CloseButton>
       {children}
     </Dialog>
   )

@@ -23,10 +23,6 @@ const Details = styled.div`
   gap: 16px;
   min-width: 0;
   padding: 24px;
-
-  @media (max-width: 540px) {
-    padding-top: 64px;
-  }
 `
 
 const Heading = styled(Header1)`
@@ -54,8 +50,7 @@ const CodePanel = styled.div`
   justify-content: center;
   gap: 12px;
   min-width: 0;
-  padding: 60px 20px 24px;
-  background: color-mix(in srgb, ${colors.accent} 20%, ${colors.background});
+  padding: 24px 20px;
   text-align: center;
 
   @media (max-width: 540px) { padding: 24px; }
@@ -64,7 +59,7 @@ const CodePanel = styled.div`
 const CodeLink = styled.a`
   display: block;
   width: min(100%, 200px);
-  padding: 12px;
+  padding: 4px;
   border-radius: 16px;
   background: ${colors.text.white};
   box-shadow: 0 12px 30px color-mix(in srgb, ${colors.text.black} 15%, transparent);
