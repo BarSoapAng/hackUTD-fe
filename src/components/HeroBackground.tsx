@@ -32,7 +32,8 @@ const Background = styled.div<{ $finished: boolean }>`
 const Atmosphere = styled.div`
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(1px);
+  box-shadow: inset 0 0 clamp(24px, 4vmin, 56px)
+    color-mix(in srgb, ${colors.text.white} 45%, transparent);
   background: linear-gradient(90deg,
     color-mix(in srgb, ${colors.text.black} 64%, transparent),
     color-mix(in srgb, ${colors.text.black} 24%, transparent));
