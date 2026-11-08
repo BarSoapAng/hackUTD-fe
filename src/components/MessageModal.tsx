@@ -20,7 +20,7 @@ const Details = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 12px;
+  gap: 24px;
   min-width: 0;
 `
 
@@ -32,7 +32,7 @@ const Heading = styled(Header1)`
 
 const NumberLink = styled.a`
   display: inline-block;
-  margin-top: 8px;
+  margin-top: 2px;
   color: inherit;
   font-size: 18px;
   font-weight: 700;

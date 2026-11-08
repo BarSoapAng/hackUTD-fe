@@ -19,7 +19,7 @@ const Dialog = styled.dialog<{ $closing: boolean }>`
 
   &::backdrop {
     background: color-mix(in srgb, ${colors.text.black} 65%, transparent);
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(10px);
   }
 
   &[open] {
