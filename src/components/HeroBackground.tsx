@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { colors } from '../lib/styles'
 import heroVideo from '../assets/hero-animation-fast.mp4'
 import heroStill from '../assets/hero-final.jpg'
+import grain from '../assets/grain.avif'
 
 const Background = styled.div<{ $finished: boolean }>`
   position: absolute;
@@ -37,6 +38,16 @@ const Atmosphere = styled.div`
   background: linear-gradient(90deg,
     color-mix(in srgb, ${colors.text.black} 64%, transparent),
     color-mix(in srgb, ${colors.text.black} 24%, transparent));
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: url(${grain}) repeat;
+    mix-blend-mode: screen;
+    opacity: 0.28;
+    filter: blur(0.4px);
+  }
 `
 
 export default function HeroBackground() {
