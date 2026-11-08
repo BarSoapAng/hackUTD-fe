@@ -125,13 +125,13 @@ function App() {
           </Header>
           <Content>
             <Heading $ready={ready}>
-              {'Make something worth texting.'.split(' ').map((word, index) => (
+              {'Big ideas start with a text.'.split(' ').map((word, index) => (
                 <Fragment key={word}>
                   <span style={{ transitionDelay: `${index * 160}ms` }}>{word}</span>{' '}
                 </Fragment>
               ))}
             </Heading>
-            <Description>Your idea, start to finish, one text away.</Description>
+            <Description>A daily companion. A community helper. A business born in your messages.</Description>
             <Button onClick={startConversation}>Start with a text</Button>
           </Content>
         </Hero>
