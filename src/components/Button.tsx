@@ -57,6 +57,7 @@ const StyledButton = styled.button<{ $variant: NonNullable<ButtonProps['variant'
     border-radius: 0;
     background: transparent;
     color: inherit;
+    font-weight: 400;
 
     &::after {
       content: '';

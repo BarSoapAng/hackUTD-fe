@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { colors } from '../lib/styles'
 import Button from './Button'
 
@@ -21,6 +21,24 @@ const Dialog = styled.dialog`
   &::backdrop {
     background: color-mix(in srgb, ${colors.text.black} 65%, transparent);
     backdrop-filter: blur(6px);
+  }
+
+  &[open] {
+    animation: ${keyframes`
+      from { opacity: 0; transform: translateY(12px) scale(0.97); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    `} 240ms ease-out;
+  }
+
+  &[open]::backdrop {
+    animation: ${keyframes`
+      from { opacity: 0; }
+      to { opacity: 1; }
+    `} 240ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &[open], &[open]::backdrop { animation: none; }
   }
 `
 
