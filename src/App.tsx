@@ -34,6 +34,7 @@ const Content = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: left;
   gap: clamp(16px, 3dvh, 28px);
 
   @media (max-height: 450px) {
