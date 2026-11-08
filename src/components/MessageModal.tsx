@@ -6,12 +6,12 @@ import Modal from './Modal'
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: 45% 55%;
-  min-height: min(325px, calc(100dvh - 34px));
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px;
 
   @media (max-width: 540px) {
     grid-template-columns: 1fr;
-    min-height: 0;
   }
 `
 
@@ -20,9 +20,8 @@ const Details = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 16px;
+  gap: 12px;
   min-width: 0;
-  padding: 24px;
 `
 
 const Heading = styled(Header1)`
@@ -34,13 +33,13 @@ const Heading = styled(Header1)`
 const NumberLink = styled.a`
   display: inline-block;
   margin-top: 8px;
-  color: ${colors.text.black};
+  color: inherit;
   font-size: 18px;
   font-weight: 700;
   text-underline-offset: 6px;
   overflow-wrap: anywhere;
 
-  &:hover { color: ${colors.accent}; }
+  &:hover { color: ${colors.background}; }
 `
 
 const CodePanel = styled.div`
@@ -50,10 +49,7 @@ const CodePanel = styled.div`
   justify-content: center;
   gap: 12px;
   min-width: 0;
-  padding: 24px 20px;
   text-align: center;
-
-  @media (max-width: 540px) { padding: 24px; }
 `
 
 const CodeLink = styled.a`

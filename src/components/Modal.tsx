@@ -5,17 +5,17 @@ import { colors } from '../lib/styles'
 const Dialog = styled.dialog<{ $closing: boolean }>`
   position: fixed;
   inset: 0;
-  width: min(550px, calc(100% - 32px));
+  width: min(500px, calc(100% - 32px));
   max-width: none;
   max-height: calc(100dvh - 32px);
   margin: auto;
   padding: 0;
-  border: 1px solid ${colors.background};
+  border: 0;
   border-radius: 20px;
   overflow: auto;
   overscroll-behavior: contain;
-  background: ${colors.text.white};
-  color: ${colors.text.black};
+  background: transparent;
+  color: ${colors.text.white};
 
   &::backdrop {
     background: color-mix(in srgb, ${colors.text.black} 65%, transparent);
