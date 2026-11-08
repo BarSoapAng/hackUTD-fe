@@ -17,6 +17,16 @@ export const GlobalStyle = createGlobalStyle`
     background: ${colors.background};
   }
 
+  body {
+    margin: 0;
+    overflow: hidden;
+  }
+
+  #root {
+    min-width: 0;
+    isolation: isolate;
+  }
+
   button, input, select, textarea {
     font-family: inherit;
   }
