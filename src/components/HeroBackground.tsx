@@ -18,23 +18,19 @@ const Background = styled.div<{ $finished: boolean }>`
     object-position: center;
   }
 
-  img {
-    transform: scale(${({ $finished }) => $finished ? 1.1 : 1});
+  video {
+    opacity: ${({ $finished }) => $finished ? 0 : 1};
+    transition: opacity 600ms ease;
   }
 
-  video { visibility: ${({ $finished }) => $finished ? 'hidden' : 'visible'}; }
-
   @media (prefers-reduced-motion: reduce) {
-    img { transform: scale(1.1); }
-    video { display: none; }
+    video { display: none; transition: none; }
   }
 `
 
 const Atmosphere = styled.div`
   position: absolute;
   inset: 0;
-  box-shadow: inset 0 0 clamp(24px, 4vmin, 56px)
-    color-mix(in srgb, ${colors.text.white} 45%, transparent);
   background: linear-gradient(90deg,
     color-mix(in srgb, ${colors.text.black} 64%, transparent),
     color-mix(in srgb, ${colors.text.black} 24%, transparent));
