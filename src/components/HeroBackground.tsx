@@ -20,6 +20,8 @@ const Background = styled.div<{ $finished: boolean }>`
 
   img {
     transform: scale(1.1);
+    filter: blur(${({ $finished }) => $finished ? '6px' : '0px'});
+    transition: filter 1800ms ease-in;
   }
 
   video {
@@ -28,6 +30,7 @@ const Background = styled.div<{ $finished: boolean }>`
   }
 
   @media (prefers-reduced-motion: reduce) {
+    img { filter: blur(6px); transition: none; }
     video { display: none; transition: none; }
   }
 `
