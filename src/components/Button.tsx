@@ -61,7 +61,7 @@ const StyledButton = styled.button<{ $variant: NonNullable<ButtonProps['variant'
     &::after {
       content: '';
       position: absolute;
-      inset: auto 0 -3px;
+      inset: calc(50% + 0.65em) 0 auto;
       height: 1px;
       background: currentColor;
       transform: scaleX(0);

@@ -6,13 +6,13 @@ import Button from './Button'
 const Dialog = styled.dialog`
   position: fixed;
   inset: 0;
-  width: min(1100px, calc(100% - 32px));
+  width: min(550px, calc(100% - 32px));
   max-width: none;
   max-height: calc(100dvh - 32px);
   margin: auto;
   padding: 0;
   border: 1px solid ${colors.background};
-  border-radius: clamp(24px, 4vw, 40px);
+  border-radius: 20px;
   overflow: auto;
   overscroll-behavior: contain;
   background: ${colors.text.white};
@@ -27,13 +27,13 @@ const Dialog = styled.dialog`
 const CloseButton = styled(Button)`
   position: absolute;
   z-index: 1;
-  top: 20px;
-  right: 20px;
-  width: 48px;
-  height: 48px;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 0;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 400;
 `
 

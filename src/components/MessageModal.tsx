@@ -7,9 +7,9 @@ import Modal from './Modal'
 const Layout = styled.div`
   display: grid;
   grid-template-columns: 45% 55%;
-  min-height: min(650px, calc(100dvh - 34px));
+  min-height: min(325px, calc(100dvh - 34px));
 
-  @media (max-width: 620px) {
+  @media (max-width: 540px) {
     grid-template-columns: 1fr;
     min-height: 0;
   }
@@ -20,18 +20,17 @@ const Details = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: clamp(24px, 5dvh, 56px);
+  gap: 16px;
   min-width: 0;
-  padding: clamp(28px, 5vw, 72px);
+  padding: 24px;
 
-  @media (max-width: 620px) {
-    padding-top: 80px;
-    gap: 24px;
+  @media (max-width: 540px) {
+    padding-top: 64px;
   }
 `
 
 const Heading = styled(Header1)`
-  font-size: clamp(32px, 5.5vw, 72px);
+  font-size: 30px;
   line-height: 1.05;
   overflow-wrap: anywhere;
 `
@@ -40,7 +39,7 @@ const NumberLink = styled.a`
   display: inline-block;
   margin-top: 8px;
   color: ${colors.text.black};
-  font-size: clamp(18px, 2.3vw, 28px);
+  font-size: 18px;
   font-weight: 700;
   text-underline-offset: 6px;
   overflow-wrap: anywhere;
@@ -53,22 +52,22 @@ const CodePanel = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 24px;
+  gap: 12px;
   min-width: 0;
-  padding: 80px clamp(24px, 4vw, 56px) 48px;
+  padding: 60px 20px 24px;
   background: color-mix(in srgb, ${colors.accent} 20%, ${colors.background});
   text-align: center;
 
-  @media (max-width: 620px) { padding: 28px; }
+  @media (max-width: 540px) { padding: 24px; }
 `
 
 const CodeLink = styled.a`
   display: block;
-  width: min(100%, 360px, 48dvh);
-  padding: clamp(16px, 2.5vw, 32px);
-  border-radius: 28px;
+  width: min(100%, 200px);
+  padding: 12px;
+  border-radius: 16px;
   background: ${colors.text.white};
-  box-shadow: 0 24px 60px color-mix(in srgb, ${colors.text.black} 15%, transparent);
+  box-shadow: 0 12px 30px color-mix(in srgb, ${colors.text.black} 15%, transparent);
 
   svg { display: block; width: 100%; height: auto; }
 `

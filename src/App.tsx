@@ -35,7 +35,7 @@ const Header = styled.header`
   align-items: center;
   gap: 16px;
   width: 100%;
-  padding: clamp(20px, 4vw, 40px) clamp(24px, 6vw, 80px);
+  padding: clamp(12px, 2vw, 20px) clamp(16px, 3vw, 40px);
 
   > button {
     justify-self: end;
@@ -54,7 +54,7 @@ const Brand = styled(Title)`
 const Content = styled.div`
   position: relative;
   width: min(100%, 1120px);
-  padding: clamp(24px, 6vw, 80px);
+  padding: clamp(16px, 3vw, 40px);
   display: flex;
   flex-direction: column;
   align-items: center;
