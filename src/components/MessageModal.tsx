@@ -55,7 +55,6 @@ const CodePanel = styled.div`
 const CodeLink = styled.a`
   display: block;
   width: min(100%, 200px);
-  padding: 4px;
   border-radius: 16px;
   background: ${colors.text.white};
   box-shadow: 0 12px 30px color-mix(in srgb, ${colors.text.black} 15%, transparent);
