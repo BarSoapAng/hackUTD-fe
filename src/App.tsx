@@ -9,6 +9,9 @@ const Page = styled.main`
   width: 100%;
   height: 100svh;
   height: 100dvh;
+  padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right))
+    max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  background: ${colors.text.white};
   overflow: hidden;
 `
 
