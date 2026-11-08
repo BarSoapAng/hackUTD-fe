@@ -15,7 +15,7 @@ const Page = styled.main`
   overflow: hidden;
 `
 
-const Hero = styled.section`
+const Hero = styled.section<{ $ready: boolean }>`
   position: relative;
   isolation: isolate;
   display: grid;
@@ -26,6 +26,12 @@ const Hero = styled.section`
   overflow: hidden;
   background: ${colors.text.black};
   color: ${colors.text.white};
+  filter: blur(${({ $ready }) => $ready ? '0px' : '28px'});
+  transition: filter 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
 `
 
 const Header = styled.header`
@@ -67,13 +73,21 @@ const Content = styled.div`
   }
 `
 
-const Heading = styled(Title)`
+const Heading = styled(Title)<{ $ready: boolean }>`
   max-width: 15ch;
   font-size: clamp(40px, min(8vw, 13dvh), 100px);
   line-height: 1.02;
   letter-spacing: -0.055em;
   overflow-wrap: anywhere;
   text-wrap: balance;
+  opacity: ${({ $ready }) => $ready ? 1 : 0};
+  transform: translateY(${({ $ready }) => $ready ? '0' : '32px'});
+  transition: opacity 1200ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  @media (prefers-reduced-motion: reduce) {
+    transform: none;
+    transition: none;
+  }
 `
 
 const Description = styled(Body)`
@@ -82,6 +96,7 @@ const Description = styled(Body)`
 `
 
 function App() {
+  const [ready, setReady] = useState(false)
   const [modalOpen, setModalOpen] = useState(false)
   const phone = import.meta.env.VITE_SMS_PHONE?.trim() || '+1 628-316-6196'
   const message = import.meta.env.VITE_SMS_MESSAGE || "Hi Hypha! I'd like to create a Sprout."
@@ -98,8 +113,8 @@ function App() {
   return (
     <>
       <Page>
-        <Hero>
-          <HeroBackground />
+        <Hero $ready={ready} aria-busy={!ready} inert={!ready}>
+          <HeroBackground onReady={setReady} />
           <Header>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 21v-8M12 17C6 17 3 14 3 8c6 0 9 3 9 9ZM12 13c0-6 3-10 9-10 0 6-3 10-9 10ZM8 21h8" />
@@ -108,7 +123,7 @@ function App() {
             <Button variant="tertiary" onClick={startConversation}>Try a demo</Button>
           </Header>
           <Content>
-            <Heading>Make something worth texting.</Heading>
+            <Heading $ready={ready}>Make something worth texting.</Heading>
             <Description>Build an iMessage agent for your people, your projects, or your next big idea. Just tell HIFA what you have in mind.</Description>
             <Button onClick={startConversation}>Start with a text</Button>
           </Content>

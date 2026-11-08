@@ -53,23 +53,81 @@ const Atmosphere = styled.div`
   }
 `
 
-export default function HeroBackground() {
+export default function HeroBackground({ onReady }: { onReady: (ready: boolean) => void }) {
   const video = useRef<HTMLVideoElement>(null)
   const [finished, setFinished] = useState(false)
 
   useEffect(() => {
+    const player = video.current
+    if (!player) return
+
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const controller = new AbortController()
+    let ready = false
+    let fallback = false
+    let frame = 0
+    let timeout: ReturnType<typeof setTimeout>
+
     function updatePlayback() {
       if (preference.matches) {
-        video.current?.pause()
-      } else if (!video.current?.ended) {
-        video.current?.play().catch(() => setFinished(true))
+        player?.pause()
+      } else if (ready && !fallback && !player?.ended) {
+        player?.play().catch(() => {
+          if (!controller.signal.aborted) setFinished(true)
+        })
       }
     }
-    updatePlayback()
-    preference.addEventListener('change', updatePlayback)
-    return () => preference.removeEventListener('change', updatePlayback)
-  }, [])
+
+    const videoReady = new Promise<void>((resolve) => {
+      if (preference.matches || player.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA || player.error) {
+        resolve()
+        return
+      }
+      player.addEventListener('canplay', () => resolve(), { once: true, signal: controller.signal })
+      player.addEventListener('error', () => resolve(), { once: true, signal: controller.signal })
+      preference.addEventListener('change', () => {
+        if (preference.matches) resolve()
+      }, { signal: controller.signal })
+    })
+
+    const assetsReady = Promise.allSettled([
+      ...[heroStill, grain].map((src) => {
+        const image = new Image()
+        image.src = src
+        return image.decode()
+      }),
+      document.fonts.ready,
+      videoReady,
+    ])
+    const loadingTimeout = new Promise<void>((resolve) => {
+      timeout = setTimeout(() => {
+        fallback = true
+        setFinished(true)
+        resolve()
+      }, 10000)
+    })
+
+    Promise.race([assetsReady, loadingTimeout]).then(() => {
+      clearTimeout(timeout)
+      if (controller.signal.aborted) return
+      // Preserve a painted loading state even when all assets are cached.
+      frame = requestAnimationFrame(() => {
+        frame = requestAnimationFrame(() => {
+          ready = true
+          onReady(true)
+          updatePlayback()
+        })
+      })
+    })
+
+    preference.addEventListener('change', updatePlayback, { signal: controller.signal })
+    return () => {
+      controller.abort()
+      clearTimeout(timeout)
+      cancelAnimationFrame(frame)
+      player.pause()
+    }
+  }, [onReady])
 
   return (
     <Background $finished={finished} aria-hidden="true">
