@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import styled from 'styled-components'
 import { Body, Title, colors } from './lib/styles'
 import Button from './components/Button'
@@ -15,7 +15,7 @@ const Page = styled.main`
   overflow: hidden;
 `
 
-const Hero = styled.section<{ $ready: boolean }>`
+const Hero = styled.section`
   position: relative;
   isolation: isolate;
   display: grid;
@@ -26,12 +26,6 @@ const Hero = styled.section<{ $ready: boolean }>`
   overflow: hidden;
   background: ${colors.text.black};
   color: ${colors.text.white};
-  filter: blur(${({ $ready }) => $ready ? '0px' : '8px'});
-  transition: filter 1400ms cubic-bezier(0.22, 1, 0.36, 1);
-
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-  }
 `
 
 const Header = styled.header`
@@ -80,13 +74,18 @@ const Heading = styled(Title)<{ $ready: boolean }>`
   letter-spacing: -0.055em;
   overflow-wrap: anywhere;
   text-wrap: balance;
-  opacity: ${({ $ready }) => $ready ? 1 : 0};
-  transform: translateY(${({ $ready }) => $ready ? '0' : '32px'});
-  transition: opacity 1200ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+  > span {
+    display: inline-block;
+    opacity: ${({ $ready }) => $ready ? 1 : 0};
+    transform: translateY(${({ $ready }) => $ready ? '0' : '32px'});
+    transition: opacity 1200ms ease, transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
   @media (prefers-reduced-motion: reduce) {
-    transform: none;
-    transition: none;
+    > span {
+      transform: none;
+      transition: none;
+    }
   }
 `
 
@@ -113,7 +112,7 @@ function App() {
   return (
     <>
       <Page>
-        <Hero $ready={ready} aria-busy={!ready} inert={!ready}>
+        <Hero aria-busy={!ready} inert={!ready}>
           <HeroBackground onReady={setReady} />
           <Header>
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -123,7 +122,13 @@ function App() {
             <Button variant="tertiary" onClick={startConversation}>Try a demo</Button>
           </Header>
           <Content>
-            <Heading $ready={ready}>Make something worth texting.</Heading>
+            <Heading $ready={ready}>
+              {'Make something worth texting.'.split(' ').map((word, index) => (
+                <Fragment key={word}>
+                  <span style={{ transitionDelay: `${index * 100}ms` }}>{word}</span>{' '}
+                </Fragment>
+              ))}
+            </Heading>
             <Description>Build an iMessage agent for your people, your projects, or your next big idea. Just tell HIFA what you have in mind.</Description>
             <Button onClick={startConversation}>Start with a text</Button>
           </Content>
