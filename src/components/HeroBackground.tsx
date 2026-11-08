@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { colors } from '../lib/styles'
+import { deviceBreakpoints } from '../lib/responsive'
 import heroVideo from '../assets/hero-animation-fast.mp4'
 import heroStill from '../assets/hero-final.webp'
 import grain from '../assets/grain.avif'
@@ -56,7 +57,8 @@ const Atmosphere = styled.div`
 
 export default function HeroBackground({ onReady }: { onReady: (ready: boolean) => void }) {
   const video = useRef<HTMLVideoElement>(null)
-  const [finished, setFinished] = useState(false)
+  const [isMobile] = useState(() => window.matchMedia(`(max-width: ${deviceBreakpoints.tablet}px)`).matches)
+  const [finished, setFinished] = useState(isMobile)
 
   useEffect(() => {
     const player = video.current
@@ -70,7 +72,7 @@ export default function HeroBackground({ onReady }: { onReady: (ready: boolean) 
     let timeout: ReturnType<typeof setTimeout>
 
     function updatePlayback() {
-      if (preference.matches) {
+      if (isMobile || preference.matches) {
         player?.pause()
       } else if (ready && !fallback && !player?.ended) {
         player?.play().catch(() => {
@@ -80,7 +82,7 @@ export default function HeroBackground({ onReady }: { onReady: (ready: boolean) 
     }
 
     const videoReady = new Promise<void>((resolve) => {
-      if (preference.matches || player.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA || player.error) {
+      if (isMobile || preference.matches || player.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA || player.error) {
         resolve()
         return
       }
@@ -128,12 +130,12 @@ export default function HeroBackground({ onReady }: { onReady: (ready: boolean) 
       cancelAnimationFrame(frame)
       player.pause()
     }
-  }, [onReady])
+  }, [isMobile, onReady])
 
   return (
     <Background $finished={finished} aria-hidden="true">
       <img src={heroStill} alt="" fetchPriority="high" />
-      <video ref={video} src={heroVideo} muted playsInline preload="auto"
+      <video ref={video} src={isMobile ? undefined : heroVideo} muted playsInline preload={isMobile ? 'none' : 'auto'}
         onEnded={() => setFinished(true)} onError={() => setFinished(true)} />
       <Atmosphere />
     </Background>
