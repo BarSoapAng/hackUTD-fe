@@ -17,6 +17,11 @@ export const GlobalStyle = createGlobalStyle`
     background: ${colors.background};
   }
 
+  ::selection {
+    background: color-mix(in srgb, ${colors.accent} 35%, ${colors.text.white});
+    color: ${colors.text.black};
+  }
+
   body {
     margin: 0;
     overflow: hidden;
