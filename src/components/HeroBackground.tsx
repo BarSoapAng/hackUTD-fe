@@ -19,6 +19,7 @@ const Background = styled.div<{ $finished: boolean }>`
   }
 
   img {
+    opacity: ${({ $finished }) => $finished ? 1 : 0};
     transform: scale(1.1);
     filter: blur(${({ $finished }) => $finished ? '6px' : '0px'});
     transition: filter 1800ms ease-in;
@@ -30,7 +31,7 @@ const Background = styled.div<{ $finished: boolean }>`
   }
 
   @media (prefers-reduced-motion: reduce) {
-    img { filter: blur(6px); transition: none; }
+    img { opacity: 1; filter: blur(6px); transition: none; }
     video { display: none; transition: none; }
   }
 `
@@ -132,7 +133,7 @@ export default function HeroBackground({ onReady }: { onReady: (ready: boolean) 
   return (
     <Background $finished={finished} aria-hidden="true">
       <img src={heroStill} alt="" fetchPriority="high" />
-      <video ref={video} src={heroVideo} poster={heroStill} muted playsInline preload="auto"
+      <video ref={video} src={heroVideo} muted playsInline preload="auto"
         onEnded={() => setFinished(true)} onError={() => setFinished(true)} />
       <Atmosphere />
     </Background>

@@ -26,7 +26,7 @@ const Hero = styled.section<{ $ready: boolean }>`
   overflow: hidden;
   background: ${colors.text.black};
   color: ${colors.text.white};
-  filter: blur(${({ $ready }) => $ready ? '0px' : '28px'});
+  filter: blur(${({ $ready }) => $ready ? '0px' : '8px'});
   transition: filter 1400ms cubic-bezier(0.22, 1, 0.36, 1);
 
   @media (prefers-reduced-motion: reduce) {
