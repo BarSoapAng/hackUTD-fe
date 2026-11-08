@@ -41,7 +41,7 @@ const Atmosphere = styled.div`
     inset: -1px;
     background: url(${grain}) center / cover no-repeat;
     mix-blend-mode: screen;
-    opacity: 0.5;
+    opacity: 0.25;
     filter: blur(0.4px);
   }
 `
