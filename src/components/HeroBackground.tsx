@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { colors } from '../lib/styles'
 import heroVideo from '../assets/hero-animation-fast.mp4'
-import heroStill from '../assets/hero-final.jpg'
-import grain from '../assets/grain.jpg'
+import heroStill from '../assets/hero-final.webp'
+import grain from '../assets/grain.avif'
 
 const Background = styled.div<{ $finished: boolean }>`
   position: absolute;
