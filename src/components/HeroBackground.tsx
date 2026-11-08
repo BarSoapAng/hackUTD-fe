@@ -22,12 +22,12 @@ const Background = styled.div<{ $finished: boolean }>`
     opacity: ${({ $finished }) => $finished ? 1 : 0};
     transform: scale(1.1);
     filter: blur(${({ $finished }) => $finished ? '6px' : '0px'});
-    transition: filter 1800ms ease-in;
+    transition: filter 1200ms ease;
   }
 
   video {
     opacity: ${({ $finished }) => $finished ? 0 : 1};
-    transition: opacity 600ms ease;
+    transition: opacity 1200ms ease;
   }
 
   @media (prefers-reduced-motion: reduce) {
