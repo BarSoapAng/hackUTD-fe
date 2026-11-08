@@ -83,7 +83,6 @@ export default function MessageModal({ open, onClose, phone, href }: MessageModa
               <NumberLink href={href}>{phone}</NumberLink>
             </div>
           ) : <Body>Messaging will be available soon.</Body>}
-          <BodyRegular>No new app. No account. Just iMessage.</BodyRegular>
         </Details>
         <CodePanel>
           {phone ? (
@@ -91,7 +90,6 @@ export default function MessageModal({ open, onClose, phone, href }: MessageModa
               <CodeLink href={href} aria-label="Open a pre-filled text message">
                 <QRCodeSVG value={href} size={320} marginSize={4} fgColor={colors.text.black} bgColor={colors.text.white} />
               </CodeLink>
-              <BodyRegular>Scan to create your Sprout.</BodyRegular>
             </>
           ) : <Body>A little knowledge.<br />Room to grow.</Body>}
         </CodePanel>

@@ -35,7 +35,7 @@ export const GlobalStyle = createGlobalStyle`
 export const Title = styled.h1`
   margin: 0px;
   font-family: "Maison Neue Bold", sans-serif;
-  font-size: 56px;
+  font-size: 64px;
   font-weight: 700;
   line-height: 145%;
   letter-spacing: 0%;
@@ -68,7 +68,7 @@ export const Header1 = styled.h1`
 export const Header2 = styled.h2`
   margin: 0px;
   font-family: "Maison Neue Bold", sans-serif;
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 120%;
   letter-spacing: -0.02em;

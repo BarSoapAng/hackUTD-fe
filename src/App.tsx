@@ -1,6 +1,6 @@
 import { Fragment, useState } from 'react'
 import styled from 'styled-components'
-import { Body, Title, colors } from './lib/styles'
+import { Body, Title, colors, Header2 } from './lib/styles'
 import Button from './components/Button'
 import HeroBackground from './components/HeroBackground'
 import MessageModal from './components/MessageModal'
@@ -46,11 +46,10 @@ const Header = styled.header`
   }
 `
 
-const Brand = styled(Title)`
+const Brand = styled(Header2)`
   display: flex;
   align-items: center;
   min-height: 44px;
-  font-size: clamp(24px, 3vw, 32px);
   line-height: 1;
   letter-spacing: -0.04em;
 `
@@ -72,8 +71,7 @@ const Content = styled.div`
 `
 
 const Heading = styled(Title)<{ $ready: boolean }>`
-  max-width: 15ch;
-  font-size: clamp(40px, min(8vw, 13dvh), 100px);
+  max-width: 95dvw;
   line-height: 1.02;
   letter-spacing: -0.055em;
   overflow-wrap: anywhere;
@@ -119,7 +117,7 @@ function App() {
         <Hero aria-busy={!ready} inert={!ready}>
           <HeroBackground onReady={setReady} />
           <Header>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 21v-8M12 17C6 17 3 14 3 8c6 0 9 3 9 9ZM12 13c0-6 3-10 9-10 0 6-3 10-9 10ZM8 21h8" />
             </svg>
             <Brand as="p">Hypha</Brand>
@@ -133,7 +131,7 @@ function App() {
                 </Fragment>
               ))}
             </Heading>
-            <Description>Build an iMessage agent for your people, your projects, or your next big idea. Just tell HIFA what you have in mind.</Description>
+            <Description>Your idea, start to finish, one text away.</Description>
             <Button onClick={startConversation}>Start with a text</Button>
           </Content>
         </Hero>
